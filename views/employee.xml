@@ -1,0 +1,161 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="emp_details.list">
+      <field name="name">EmpDetails list</field>
+      <field name="model">emp_details.emp_details</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="email"/>
+          <field name="mobile"/>
+          <field name="gender"/>
+          <field name="birth_date"/>
+          <field name="nationality"/>
+          <field name="image" widget='image' />
+        </tree>
+      </field>
+    </record>
+
+     <!-- explicit form view definition of employee -->
+      <record id="view_op_employee_form" model="ir.ui.view">
+            <field name="name">Employee list</field>
+            <field name="model">emp_details.emp_details</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Employee">
+                    <sheet>
+                       <field name="image" widget="image" class="oe_left oe_avatar" />
+                        <div class="oe_title">
+                            <h3>
+                                <field name="name" placeholder="Name"/>
+                            </h3>
+                         </div>
+                        <notebook colspan="4">
+                            <page name="personal_information"
+                                string="Personal Information">
+                                <group col="4" colspan="4"
+                                    name="personal_detail">
+                                    <field name="gender" required="1" />
+                                    <field name="birth_date" required="1" />
+                                    <field name="marital"/>
+                                    <field name="blood_group" />
+                                    <field name="email" required="1" />
+                                    <field name="mobile"/>
+                                    <field name="father"/>
+                                    <field name="mother"/>
+                                    <field name="nationality" />
+                                    <field name="officialEmail"/>
+                                    <field name="relligion"/>
+                                    <field name="telephone1"/>
+                                    <field name="telephone2"/>
+                                    <field name="extension"/>
+                                    <field name="code"/>
+                                    <field name="uid"/>
+                                    <field name="pan"/>
+                                    <field name="smartcard"/>
+                                    <field name="bank"/>
+                                    <field name="differently"/>
+                                    <field name="reservation"/>
+                                    <field name="minority"/>
+                                    <field name="fourWheeler"/>
+                                    <field name="twoWheeler"/>
+                                    <field name="fingerprint"/>
+                                </group>
+                            </page>
+                              <page name="Address"
+                                string="Address">
+                                  <field name="address_id" nolabel="1">
+                                    <tree string="Address">
+                                        <field name="c_address_line1"/>
+                                        <field name="c_address_line2" />
+                                        <field name="c_city"/>
+                                        <field name="state"/>
+                                        <field name="c_zip"/>
+                                        <field name="c_country"/>
+
+                                    </tree>
+                                  </field>
+                               </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="emp_details.action_window">
+      <field name="name">EmpDetails window</field>
+      <field name="res_model">emp_details.emp_details</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+       <!-- explicit list view definition of employee address-->
+      <record model="ir.ui.view" id="emp_details.list3">
+      <field name="name">address list</field>
+      <field name="model">employee.address</field>
+      <field name="arch" type="xml">
+        <tree>
+             <field name="c_address_line1"/>
+             <field name="c_address_line2" />
+             <field name="c_city"/>
+             <field name="state"/>
+             <field name="c_zip"/>
+             <field name="c_country"/>
+        </tree>
+      </field>
+    </record>
+
+      <!-- explicit form view definition of employee job -->
+      <record id="view_op_address_form" model="ir.ui.view">
+            <field name="name">address list</field>
+            <field name="model">employee.address</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Address">
+                    <sheet>
+                        <notebook colspan="4">
+                            <page name="Address" string="Address">
+                                <group string=" Current Address" col="4" colspan="4">
+                                        <field name="c_address_line1"/>
+                                        <field name="c_address_line2" />
+                                        <field name="c_city"/>
+                                        <field name="c_state"/>
+                                        <field name="c_zip"/>
+                                        <field name="c_country"/>
+                                </group>
+                                 <newline />
+                                  <group string=" Permanent Address" col="4" colspan="4">
+                                            <field name="address_line1"/>
+                                            <field name="address_line2"/>
+                                            <field name="city" />
+                                            <field name="state"/>
+                                            <field name="zip" />
+                                            <field name="country" />
+                                  </group>
+                            </page>
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+       <!-- action of employee adress-->
+         <record model="ir.actions.act_window" id="emp_details.action_window3">
+             <field name="name">Address window</field>
+             <field name="res_model">employee.address</field>
+             <field name="view_mode">tree,form</field>
+         </record>
+    <!-- Top menu item -->
+
+    <menuitem name="Employee" id="emp_details.menu_root"/>
+    <!-- menu categories -->
+
+    <menuitem name="Employee Details" id="emp_details.menu_1" parent="emp_details.menu_root"/>
+
+    <!-- actions -->
+    <menuitem name="Personal details" id="emp_details.menu_1_list" parent="emp_details.menu_1"
+              action="emp_details.action_window"/>
+
+  </data>
+</odoo>
